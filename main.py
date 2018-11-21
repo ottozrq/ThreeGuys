@@ -13,7 +13,6 @@ def index():
 def submit():
     print 'submit'
 
-@app.route("/")
 
 
 
