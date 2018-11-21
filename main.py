@@ -9,6 +9,13 @@ app.debug = True
 def index():
     return render_template('index.html')
 
+@app.route("/submit")
+def submit():
+    print 'submit'
+
+@app.route("/")
+
+
 
 
 if __name__ == "__main__":
