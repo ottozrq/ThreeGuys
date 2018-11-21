@@ -8,3 +8,6 @@ Directories and files
 
 Packages
     Flask
+
+How to use
+    python main.py
