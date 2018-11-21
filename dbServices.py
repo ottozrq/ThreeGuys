@@ -1,7 +1,6 @@
 from pymongo import *
 import logging
-import json_mapping_services
-from datamodel import *
+from dataModel import *
 from pprint import *
 
 client = MongoClient(host='localhost', port=27017)
@@ -12,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 def save(respondent):
-    respondent_json = json_mapping_services.to_json(respondent)
+    respondent_json = respondent.__dict__
     result = collection.insert_one(respondent_json)
     logger.info(result)
 
@@ -24,11 +23,12 @@ def find(respondent):
     return result
 
 
-def update(respondent,to_update):
-    respondent_json = json_mapping_services.to_json(respondent)
+def update(respondent, to_update):
+    respondent_json = respondent.__dict__
     to_find = {'res_id': to_update.res_id}
     result = collection.update_one(to_find, {'$set': respondent_json})
     logger.info(result)
+
 
 def delete(respondent):
     to_delete = {'respondent_id': respondent.res_id}
@@ -41,7 +41,7 @@ if __name__ == "__main__":
     answers = [answer]
     respondent = Respondent(1, False, answers)
     answer2 = Answer(1, "text", 'my name is qiaoyu.liu')
-    json_mapping_services.add_answers(respondent, answer2)
+    respondent.add_answer(answer2)
     answers = []
     to_update = Respondent(1, False, answers)
     save(respondent)

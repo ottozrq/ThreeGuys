@@ -11,11 +11,15 @@ def index():
 
 @app.route("/submit")
 def submit():
-    print 'submit'
+    return 'submit'
 
+@app.route("/save")
+def save():
+    return 'save'
 
-
-
+@app.route("/backend")
+def backend():
+    return 'backend'
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
