@@ -5,18 +5,35 @@ from pprint import pprint
 import json
 
 
-def save(data):
-    uid = uuid.uuid1().hex
-    respondent = model.Respondent(uid, False, data)
-    dbs.save(respondent)
+def save(data, uid=""):
+    save_flag = False
+    if (uid == ""):
+        uid = uuid.uuid1().hex
+        save_flag = True
+    respondent = model.Respondent(uid, False)
+    for row in data:
+        ans = model.Answer(row["id_question"], row["ans_type"], row["content"])
+        respondent.add_answer(ans)
+    if (save_flag):
+        dbs.save(respondent)
+    else:
+        dbs.update(respondent, uid)
     return {"id": uid}
 
 
 def submit(data, uid=""):
+    save_flag = False
     if (uid == ""):
         uid = uuid.uuid1().hex
-    respondent = model.Respondent(uid, True, data)
-    dbs.save(respondent)
+        save_flag = True
+    respondent = model.Respondent(uid, True)
+    for row in data:
+        ans = model.Answer(row["id_question"], row["ans_type"], row["content"])
+        respondent.add_answer(ans)
+    if (save_flag):
+        dbs.save(respondent)
+    else:
+        dbs.update(respondent, uid)
     return {"id": uid}
 
 

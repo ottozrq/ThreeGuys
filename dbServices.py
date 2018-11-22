@@ -29,9 +29,9 @@ def find_all():
     return result
 
 
-def update(respondent, to_update):
+def update(respondent, uid):
     respondent_json = respondent.to_json_obj()
-    to_find = {'id': to_update.id}
+    to_find = {'id': uid}
     result = collection.update_one(to_find, {'$set': respondent_json})
     logger.info(result)
 

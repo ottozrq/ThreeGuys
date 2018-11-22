@@ -11,3 +11,9 @@ Packages
 
 How to use
     python main.py
+
+APIs
+    /(<uid>) - use uid to get related question sheet with answers
+    /get/<uid> - API to get related answers (should be called in /<uid>)
+    /submit/(<uid>) - API to submit results
+    /save/(<uid>) - API to save results
