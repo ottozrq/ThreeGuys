@@ -20,6 +20,23 @@ def save(data, uid=""):
         dbs.update(respondent, uid)
     return {"id": uid}
 
+def update_stat(answer):
+    type = answer.ans_type
+    ans_content = answer.content
+    res_ans = dbs.find_stat(answer)
+    if type == 1:
+        stat = model.Statistic(answer.id_question, type, res_ans['q_content'])
+        choices = res_ans['answers']
+        for choice in choices:
+            if ans_content == choice['a_id']:
+                print choice['number']+1
+                stat_answer = model.Stat_answer(choice['a_id'],choice['number']+1)
+            else :
+                stat_answer = model.Stat_answer(choice['a_id'],choice['number'])
+            stat.answers.append(stat_answer)
+        dbs.updata_stat(stat)
+    return
+
 
 def submit(data, uid=""):
     save_flag = False
@@ -29,6 +46,7 @@ def submit(data, uid=""):
     respondent = model.Respondent(uid, True)
     for row in data:
         ans = model.Answer(row["id_question"], row["ans_type"], row["content"])
+        update_stat(ans)
         respondent.add_answer(ans)
     if (save_flag):
         dbs.save(respondent)
@@ -64,6 +82,7 @@ def getall():
         results.append(result)
     return results
 
+'''
 if __name__ == "__main__":
     answer = model.Answer(1, "text", "what's your name?")
     answers = []
@@ -75,3 +94,7 @@ if __name__ == "__main__":
         pprint(result)
     pprint(get(1))
 
+'''
+if __name__ == "__main__":
+    answer = model.Answer(1, 1, 1)
+    update_stat(answer)
