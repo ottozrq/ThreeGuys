@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div id="container_Q">
+<div class="row">
+    <div class="col-6" *ngFor="in questions">
+        <label class="question_id">{{question_id}}</label>
+        <label class="question_type">{{question_type}}</label>
+        <p class="question_content">{{question_content}}</p>
+        </div>
+        <div class="container_A">
+        <div class="row">
+            <div class="col-6" *ngFor="in question.answers">
+                <label class="anwer_id">{{anwer_idt}}</label>
+                <p class="anwer_content">{{anwer_content}}</p>
+                <label class="anwer_num">{{anwer_num}}</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
