@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div id="container_Q">
+<div class="row">
+
+<header>
+    <script>
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var Question = JSON.parse(this.responseText);
+            }
+        };
+    xmlhttp.open("GET", "json_demo.txt", true);
+    xmlhttp.send();
+    </script>
+    </script>
+</header>
+<div class="QuestionsComp">   
+    <div class="col-6">
+        <label class="question_id"></label>
+        <label class="question_type"></label>
+        <p class="question_content"></p>
+        </div>
+        <div class="container_A">
+        <div class="row">
+            <div class="col-6">
+                <label class="anwer_id"></label>
+                <p class="anwer_content"></p>
+                <label class="anwer_num"></label>
+            </div>
+        </div>    
+
+        <script>
+            if !!document.getElementsByClassName("question_id") {
+                document.getElementsByClassName("question_id").innerHTML = Question.question_id;
+                document.getElementsByClassName("question_type").innerHTML = Question.question_type;
+                document.getElementsByClassName("question_content").innerHTML = Question.question_content;
+                if !!document.getElementsByClassName("anwer_id"){
+                    document.getElementsByClassName("anwer_id").innerHTML = Question.anwer_id;
+                    document.getElementsByClassName("anwer_type").innerHTML = Question.anwer_type;
+                    document.getElementsByClassName("anwer_content").innerHTML = Question.anwer_content;
+                }
+            }
+        </script>
+    </div>
+</div>
+    
+</div>
+</div>
+</body>
+</html>
