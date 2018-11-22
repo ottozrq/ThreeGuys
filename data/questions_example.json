@@ -4,7 +4,7 @@
     question: 'In which sector of activity is your company active? (linked with your APE code)',
     topic: 'Your compagny',
     type: 'S',
-    choicess: [
+    choices: [
       {
         id: 1,
         text: 'Industry'
