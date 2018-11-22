@@ -42,7 +42,7 @@ def save(uid=""):
 def backend():
     json = dao.getall()
     data = [e.to_json_obj() for e in json]
-    return render_template('backend.html', data = data )
+    return render_template('backend.html', data=data)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')

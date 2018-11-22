@@ -49,16 +49,23 @@ def delete(respondent):
 
 
 if __name__ == "__main__":
-    answer = Answer(1, "text", "what's your name?")
+    answer = Answer(1, "SC", {"a_id": 1})
     answers = [answer]
     respondent = Respondent(1, False, answers)
-    answer2 = Answer(1, "text", 'my name is qiaoyu.liu')
+    answer2 = Answer(2, "T", 'my name is qiaoyu.liu')
     respondent.add_answer(answer2)
+    answer3 = Answer(3, "MC", {"a_id": [1, 2, 3]})
+    respondent.add_answer(answer3)
+    answer4 = Answer(4, "ST", {"a_id": 1, "text": "hahaha"})
+    respondent.add_answer(answer4)
     answers = []
-    to_update = Respondent(1, False, answers)
+    to_update = Respondent(2, False, answers)
     save(respondent)
-    pprint(find_one(respondent))
-    update(respondent, to_update)
-    pprint(find_one(to_update))
-    delete(to_update)
-    pprint(find_all())
+    pprint(find_one(2))
+    results = find_all()
+    for result in results:
+        pprint(result)
+    # update(respondent, to_update)
+    # pprint(find_one(2))
+    # delete(to_update)
+    # pprint(find_all())

@@ -1,4 +1,5 @@
 import json
+from pprint import pprint
 
 
 class Answer:
@@ -29,7 +30,7 @@ class Respondent:
 
 
     def to_json_str_2(self):
-        ans = json.dumps(self.answers, default = obj_dict)
+        ans = json.dumps(self.answers, default=obj_dict)
         self.answers=[]
         resp = json.dumps(self)
         json_obj_ans = json.loads(ans)
@@ -58,8 +59,8 @@ class Respondent:
 
 
 if __name__ == "__main__":
-    answer = Answer(1, "text", "what's your name?")
+    answer = Answer(1, "single choice", {"a_id": 1})
     respondent = Respondent(1, False)
     respondent.add_answer(answer)
     respondent.add_answer(answer)
-    print(respondent.to_string())
+    pprint(respondent.to_json_obj())
