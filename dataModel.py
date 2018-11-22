@@ -27,6 +27,17 @@ class Respondent:
         self.submitted = submitted
         self.answers = answers
 
+
+    def to_json_str_2(self):
+        ans = json.dumps(self.answers, default = obj_dict)
+        self.answers=[]
+        resp = json.dumps(self)
+        json_obj_ans = json.loads(ans)
+        json_obj_resp = json.loads(resp)
+        json_obj_resp['answers'].append(json_obj_ans)
+        json_obj_resp
+        return json.dumps(self.__dict__)
+
     def to_string(self):
         return json.dumps(self.to_json_obj())
 

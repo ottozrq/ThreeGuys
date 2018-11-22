@@ -51,6 +51,19 @@ def get(uid):
     return results
 
 
+def getall():
+    respondents = dbs.find_all()
+    results = []
+    for respondent in  respondents:
+        answers = respondent["answers"]
+        his_answers = []
+        for answer in answers:
+            his_answer = model.Answer(answer["id_question"], answer["ans_type"], answer["content"])
+            his_answers.append(his_answer)
+        result = model.Respondent(respondent["id"], respondent["submitted"], his_answers)
+        results.append(result)
+    return results
+
 if __name__ == "__main__":
     answer = model.Answer(1, "text", "what's your name?")
     answers = []

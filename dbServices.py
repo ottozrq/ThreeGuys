@@ -29,6 +29,12 @@ def find_all():
     return result
 
 
+def find(respondent):
+    result = collection.find(respondent)
+    logger.info(result)
+    return result
+
+
 def update(respondent, uid):
     respondent_json = respondent.to_json_obj()
     to_find = {'id': uid}
