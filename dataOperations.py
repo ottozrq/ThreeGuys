@@ -35,13 +35,13 @@ def get(uid):
 
 
 if __name__ == "__main__":
-    # answer = model.Answer(1, "text", "what's your name?")
-    # answers = []
-    # answers.append(answer)
-    # answers.append(answer)
-    # submit(answers)
-    # results = dbs.find_all()
-    # for result in results:
-    #     pprint(result)
+    answer = model.Answer(1, "text", "what's your name?")
+    answers = []
+    answers.append(answer)
+    answers.append(answer)
+    submit(answers)
+    results = dbs.find_all()
+    for result in results:
+        pprint(result)
     pprint(get(1))
 

@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from flask_assets import Environment
 import dataOperations as dao
 
@@ -7,8 +7,13 @@ assets = Environment(app)
 app.debug = True
 
 
-@app.route("/<uid>")
-def index(uid=""):
+@app.route("/")
+def index():
+    return render_template('index.html')
+
+
+@app.route("/shared/<uid>")
+def shared(uid=""):
     return render_template('index.html', uid)
 
 
