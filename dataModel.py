@@ -13,6 +13,13 @@ class Answer:
     def to_json_obj(self):
         return json.loads(self.to_json_str())
 
+    def serialize(self):
+        return {
+            'id_question': self.id_question,
+            'ans_type': self.ans_type,
+            'content': self.content,
+        }
+
 
 class Respondent:
     def __init__(self, id, submitted, answers=[]):

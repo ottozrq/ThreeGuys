@@ -1,21 +1,37 @@
-from flask import Flask, render_template
-from flask_assets import Environment, Bundle
+from flask import Flask, jsonify
+from flask_assets import Environment
+import dataOperations as dao
 
 app = Flask(__name__)
 assets = Environment(app)
 app.debug = True
 
-@app.route("/")
-def index():
-    return render_template('index.html')
 
-@app.route("/submit")
-def submit():
-    return 'submit'
+@app.route("/<uid>")
+def index(uid=""):
+    return render_template('index.html', uid)
 
-@app.route("/save")
-def save():
-    return 'save'
+
+@app.route("/get/<uid>")
+def get(uid):
+    json = dao.get(uid)
+    if "error" in json:
+        return jsonify(json)
+    else:
+        return jsonify(eqtls=[e.serialize() for e in json])
+
+
+@app.route("/submit", methods=['POST'])
+def submit(data, uid):
+    json = dao.submit(data, uid)
+    return jsonify(json)
+
+
+@app.route("/save", methods=['POST'])
+def save(data):
+    json = dao.save(data)
+    return jsonify(json)
+
 
 @app.route("/backend")
 def backend():
