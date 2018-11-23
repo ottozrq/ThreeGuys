@@ -25,17 +25,29 @@ def update_stat(answer):
     type = answer.ans_type
     ans_content = answer.content
     res_ans = dbs.find_stat(answer)
-    if type == 1:
-        stat = model.Statistic(answer.id_question, type, res_ans['q_content'])
-        choices = res_ans['answers']
-        for choice in choices:
-            if ans_content == choice['a_id']:
-                print choice['number']+1
-                stat_answer = model.Stat_answer(choice['a_id'],choice['number']+1)
-            else :
-                stat_answer = model.Stat_answer(choice['a_id'],choice['number'])
-            stat.answers.append(stat_answer)
-        dbs.updata_stat(stat)
+    stat = model.Statistic(answer.id_question, type, res_ans['q_content'])
+    choices = res_ans['answers']
+    if type ==4:
+        choices.append(ans_content)
+    else:
+     for choice in choices:
+        texts = choice['texts']
+        if ans_content['a_id'] == choice['a_id']:
+            if type == 3:
+               i = 0
+               for ele in texts:
+                 i += 1
+               text = model.Text(i,ans_content['text'])
+               texts.append(text)
+               stat_answer = model.Stat_answer(choice['a_id'],choice['number']+1,texts)
+            if type == 1:
+               stat_answer = model.Stat_answer(choice['a_id'], choice['number'] + 1)
+        if type==2 and  choice['a_id'] in ans_content['a_id'] :
+            stat_answer = model.Stat_answer(choice['a_id'], choice['number'] + 1)
+        else :
+            stat_answer = model.Stat_answer(choice['a_id'],choice['number'],texts)
+        stat.answers.append(stat_answer)
+    dbs.updata_stat(stat)
     return
 
 
@@ -98,5 +110,5 @@ if __name__ == "__main__":
 
 '''
 if __name__ == "__main__":
-    answer = model.Answer(1, 1, 1)
+    answer = model.Answer(1, 1, {'a_id':1,})
     update_stat(answer)

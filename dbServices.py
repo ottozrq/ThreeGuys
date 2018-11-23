@@ -70,24 +70,11 @@ def delete(uid):
 
 
 if __name__ == "__main__":
-    # uid = "1"
-    # answer = Answer(1, "SC", {"a_id": 1})
-    # answers = [answer]
-    # respondent = Respondent(uid, False, answers)
-    # answer2 = Answer(2, "T", 'my name is qiaoyu.liu')
-    # respondent.add_answer(answer2)
-    # answer3 = Answer(3, "MC", {"a_id": [1, 2, 3]})
-    # respondent.add_answer(answer3)
-    # answer4 = Answer(4, "ST", {"a_id": 1, "text": "hahaha"})
-    # respondent.add_answer(answer4)
-    # answers = []
-    # to_update = Respondent(uid, True, answers)
-    # save(respondent)
-    # update(respondent, uid)
-    # results = find_all()
-    # for result in results:
-    #     pprint(result)
-    # delete(uid)
-    results = find_all()
-    for result in results:
-        pprint(result)
+    answer = Stat_answer(1, 1)
+    test = Text(1, "sleepy")
+    answer.texts.append(test)
+    answer.texts.append(test)
+    answer.texts.append(test)
+    answers = [answer]
+    stat = Statistic(1,1,"aaaaaaaaaaaaa",answers)
+    save_stat(stat)
