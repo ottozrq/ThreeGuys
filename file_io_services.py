@@ -3,7 +3,7 @@ import dbServices as dbs
 import json
 
 def statistic_db_maker():
-    with open("data/questions.json","r") as json_f:
+    with open("data/document.json","r") as json_f:
         load_dict = json.load(json_f)
         i = 1
         for ele in load_dict:
@@ -17,13 +17,16 @@ def statistic_db_maker():
             i+=1
 
 def question_maker(ele,i):
-    question = model.Statistic(i, ele['type'], ele['question'])
+    type = ele['type']
+    question = model.Statistic(i, type, ele['question'])
     j = 1
     for choice in ele['choices']:
         stat_answer = model.Stat_answer(j, 0)
         question.answers.append(stat_answer)
         j += 1
     return question
+
+
 
 if __name__ == "__main__":
     statistic_db_maker()

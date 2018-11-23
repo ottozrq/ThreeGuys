@@ -64,7 +64,7 @@ def delete(respondent):
     result = collection.delete_one(to_delete)
     logger.info(result)
 
-
+'''
 if __name__ == "__main__":
     answer = Answer(1, "text", "what's your name?")
     answers = [answer]
@@ -79,3 +79,13 @@ if __name__ == "__main__":
     pprint(find_one(to_update))
     delete(to_update)
     pprint(find_all())
+'''
+if __name__ == "__main__":
+    answer = Stat_answer(1, 1)
+    test = Text(1, "sleepy")
+    answer.texts.append(test)
+    answer.texts.append(test)
+    answer.texts.append(test)
+    answers = [answer]
+    stat = Statistic(1,1,"aaaaaaaaaaaaa",answers)
+    save_stat(stat)
