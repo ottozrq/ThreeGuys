@@ -74,19 +74,9 @@ class Respondent:
         self.answers = answers
 
 
-<<<<<<< HEAD
-=======
-    def to_json_str_2(self):
-        ans = json.dumps(self.answers, default=obj_dict)
-        self.answers=[]
-        resp = json.dumps(self)
-        json_obj_ans = json.loads(ans)
-        json_obj_resp = json.loads(resp)
-        json_obj_resp['answers'].append(json_obj_ans)
-        json_obj_resp
-        return json.dumps(self.__dict__)
 
->>>>>>> 83c56fd9f00e258127e6f0d2706136a388eef9ad
+
+
     def to_string(self):
         return json.dumps(self.to_json_obj())
 
@@ -144,6 +134,4 @@ if __name__ == "__main__":
     answer.texts.append(test)
     answer.texts.append(test)
     print answer.serialize()
-=======
-    pprint(respondent.to_json_obj())
->>>>>>> 83c56fd9f00e258127e6f0d2706136a388eef9ad
+

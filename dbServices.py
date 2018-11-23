@@ -99,13 +99,4 @@ if __name__ == "__main__":
     answers = [answer]
     stat = Statistic(1,1,"aaaaaaaaaaaaa",answers)
     save_stat(stat)
-=======
-    update(respondent, uid)
-    results = find_all()
-    for result in results:
-        pprint(result)
-    delete(uid)
-    results = find_all()
-    for result in results:
-        pprint(result)
->>>>>>> 83c56fd9f00e258127e6f0d2706136a388eef9ad
+
