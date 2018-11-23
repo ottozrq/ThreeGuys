@@ -32,12 +32,11 @@ python main.py
     - modify templates/index.html (do not copy files!), link related js and css files
     - if you have data.json changed, put it in assets/data
     - push your work
-    - log in as otto(not root!) on remote server (I sent u the password)
+    - log in
     - cd ~/threeguys
     - git pull
     - sudo service main restart
     - sudo service nginx restart
-    - goto http://vps613446.ovh.net to check if everything is working alright
 ```      
 
 ## Developers
