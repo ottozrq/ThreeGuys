@@ -1,5 +1,6 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, send_from_directory
 from flask_assets import Environment
+from flask_cors import cross_origin
 import dataOperations as dao
 
 app = Flask(__name__)
@@ -24,6 +25,7 @@ def get(uid):
 
 @app.route("/submit/", defaults={'uid': None}, methods=['POST'])
 @app.route("/submit/<uid>", methods=['POST'])
+@cross_origin()
 def submit(uid=""):
     data = request.json
     json = dao.submit(data, uid)
@@ -32,8 +34,10 @@ def submit(uid=""):
 
 @app.route("/save/", defaults={'uid': None}, methods=['POST'])
 @app.route("/save/<uid>", methods=['POST'])
+@cross_origin()
 def save(uid=""):
     data = request.json
+    print data
     json = dao.save(data, uid)
     return jsonify(json)
 
@@ -43,6 +47,12 @@ def backend():
     json = dao.getall()
     data = [e.to_json_obj() for e in json]
     return render_template('backend.html', data=data)
+
+
+@app.route('/assets/data/data.json')
+def send_file():
+    return send_from_directory('assets/data/', 'data.json')
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')

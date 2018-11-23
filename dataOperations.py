@@ -41,7 +41,7 @@ def update_stat(answer):
 
 def submit(data, uid=""):
     save_flag = False
-    if (not uid or uid == ""):
+    if (not uid ):
         uid = uuid.uuid1().hex
         save_flag = True
     respondent = model.Respondent(uid, True)
