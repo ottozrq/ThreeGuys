@@ -7,7 +7,7 @@ import json
 
 def save(data, uid=""):
     save_flag = False
-    if (uid == ""):
+    if (not uid or uid == ""):
         uid = uuid.uuid1().hex
         save_flag = True
     respondent = model.Respondent(uid, False)
@@ -19,6 +19,7 @@ def save(data, uid=""):
     else:
         dbs.update(respondent, uid)
     return {"id": uid}
+
 
 def update_stat(answer):
     type = answer.ans_type
@@ -52,7 +53,7 @@ def update_stat(answer):
 
 def submit(data, uid=""):
     save_flag = False
-    if (uid == ""):
+    if (not uid or uid == ""):
         uid = uuid.uuid1().hex
         save_flag = True
     respondent = model.Respondent(uid, True)
@@ -82,9 +83,10 @@ def get(uid):
 
 
 def getall():
-    respondents = dbs.find_all()
+    res_temp = {"submitted": True}
+    respondents = dbs.find(res_temp)
     results = []
-    for respondent in  respondents:
+    for respondent in respondents:
         answers = respondent["answers"]
         his_answers = []
         for answer in answers:
@@ -96,7 +98,7 @@ def getall():
 
 '''
 if __name__ == "__main__":
-    answer = model.Answer(1, "text", "what's your name?")
+    answer = model.Answer(1, "single choice", {"a_id": 1})
     answers = []
     answers.append(answer)
     answers.append(answer)

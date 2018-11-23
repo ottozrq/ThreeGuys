@@ -1,4 +1,5 @@
 import json
+from pprint import pprint
 
 
 class Answer:
@@ -73,6 +74,19 @@ class Respondent:
         self.answers = answers
 
 
+<<<<<<< HEAD
+=======
+    def to_json_str_2(self):
+        ans = json.dumps(self.answers, default=obj_dict)
+        self.answers=[]
+        resp = json.dumps(self)
+        json_obj_ans = json.loads(ans)
+        json_obj_resp = json.loads(resp)
+        json_obj_resp['answers'].append(json_obj_ans)
+        json_obj_resp
+        return json.dumps(self.__dict__)
+
+>>>>>>> 83c56fd9f00e258127e6f0d2706136a388eef9ad
     def to_string(self):
         return json.dumps(self.to_json_obj())
 
@@ -116,10 +130,11 @@ class Statistic:
         return stat_json_obj
 '''
 if __name__ == "__main__":
-    answer = Answer(1, "text", "what's your name?")
+    answer = Answer(1, "single choice", {"a_id": 1})
     respondent = Respondent(1, False)
     respondent.add_answer(answer)
     respondent.add_answer(answer)
+<<<<<<< HEAD
     print(respondent.to_string())
 '''
 if __name__ == "__main__":
@@ -129,3 +144,6 @@ if __name__ == "__main__":
     answer.texts.append(test)
     answer.texts.append(test)
     print answer.serialize()
+=======
+    pprint(respondent.to_json_obj())
+>>>>>>> 83c56fd9f00e258127e6f0d2706136a388eef9ad
