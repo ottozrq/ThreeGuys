@@ -15,5 +15,18 @@ How to use
 APIs
     /(<uid>) - use uid to get related question sheet with answers
     /get/<uid> - API to get related answers (should be called in /<uid>)
-    /submit/(<uid>) - API to submit results
-    /save/(<uid>) - API to save results
+    /submit/(<uid>) - API to submit results, return json of id: {'id': <uid>}
+    /save/(<uid>) - API to save results, return json of id: {'id': <uid>}
+
+How to deploy
+    - Copy generated js file to /static/js/
+    - Copy generated css file to /static/css/
+    - modify templates/index.html (do not copy files!), link related js and css files
+    - if you have data.json changed, put it in assets/data
+    - push your work
+    - log in as otto(not root!) on remote server (I sent u the password)
+    - cd ~/threeguys
+    - git pull
+    - sudo service main restart
+    - sudo service nginx restart
+    - goto http://vps613446.ovh.net to check if everything is working alright
