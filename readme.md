@@ -40,14 +40,6 @@ python main.py
     - goto http://vps613446.ovh.net to check if everything is working alright
 ```      
 
-
-## Results
-
-
-* screenshot
-
-![](https://)
-
 ## Developers
 |Developer|Contact|
 |:-:|:-:|
